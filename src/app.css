@@ -1,3 +1,91 @@
+/* ============================================
+   Anthropic-inspired Design Tokens
+   Light + Dark (auto via prefers-color-scheme)
+   ============================================ */
+
+:root {
+  /* Type stacks (NO mono anywhere) */
+  --font-serif: "Anthropic Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Anthropic Sans", Inter, system-ui, -apple-system, "Segoe UI",
+    Arial, sans-serif;
+
+  /* Radius scale */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Spacing scale (8px base) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 96px;
+}
+
+/* ============================================
+   LIGHT — default
+   ============================================ */
+:root {
+  --ink: #141413;
+  --ink-soft: #3d3d3a;
+  --text-muted: #5e5d59;
+  --text-secondary: #b0aea5;
+  --text-tertiary: #87867f;
+  --hairline: #d1cfc5;
+
+  --canvas: #faf9f5;
+  --surface-secondary: #f0eee6;
+  --surface-secondary-hover: #e8e6dc;
+  --surface-warm: #e3dacc;
+  --surface-manilla: #ebdbbc;
+  --surface-kraft: #d4a27f;
+
+  --inverse: #000000;
+
+  --accent-clay: #d97757;
+  --accent-cactus: #bcd1ca;
+
+  /* Memberi tahu browser: form controls, scrollbar, dll. pakai skema terang */
+  color-scheme: light;
+}
+
+/* ============================================
+   DARK — otomatis saat OS/browser dark mode
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Teks: cream di atas slate */
+    --ink: #faf9f5;
+    --ink-soft: #d8d5cb;
+    --text-muted: #b0aea5;
+    --text-secondary: #87867f;
+    --text-tertiary: #5e5d59;
+    --hairline: #3d3d3a;
+
+    /* Surface: slate ink sebagai canvas */
+    --canvas: #141413;
+    --surface-secondary: #1e1e1c;
+    --surface-secondary-hover: #262624;
+    --surface-warm: #2c2c29;
+    --surface-manilla: #3a3a35;
+    --surface-kraft: #4a4a42;
+
+    --inverse: #faf9f5;
+
+    /* Accent digeser sedikit lebih terang agar tetap terbaca di gelap */
+    --accent-clay: #e08e6d;
+    --accent-cactus: #bcd1ca;
+
+    color-scheme: dark;
+  }
+}
+
+/* ============================================
+   Reset & base
+   ============================================ */
 * {
   box-sizing: border-box;
 }
@@ -10,6 +98,19 @@ body,
 }
 
 body {
-  font-family: system-ui, sans-serif;
-  color: #1c1915;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+::selection {
+  background: var(--surface-warm);
+  color: var(--ink);
 }
